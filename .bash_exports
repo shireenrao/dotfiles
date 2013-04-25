@@ -1,0 +1,20 @@
+# All Exports for my bash session
+export WORKON_HOME=$HOME/.virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true
+
+# Add the exif python module to my PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:$HOME/mydev/python_modules/exif
+
+# MacPorts Installer addition on 2012-12-29_at_11:10:57:
+# adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# Finally put your bin in your path
+export PATH=$HOME/bin:$PATH
+
+## set perllib
+#export PERL5LIB=$HOME/tools/perl/usr/local/lib/perl5:$HOME/tools/perl/usr/local/lib/perl5/site
+
+
