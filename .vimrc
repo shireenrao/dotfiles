@@ -9,7 +9,6 @@ autocmd! bufwritepost .vimrc source %
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
-
 set pastetoggle=<F2>
 set clipboard=unnamed
 
@@ -28,9 +27,9 @@ let mapleader = ","
 " Bind nohl
 " " Removes highlight of your last search
 " " ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-"" noremap <C-n> :nohl<CR>
-"" vnoremap <C-n> :nohl<CR>
-"" inoremap <C-n> :nohl<CR>
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
 
 
 " Quicksave command
@@ -47,19 +46,19 @@ let mapleader = ","
 " bind Ctrl+<movement> keys to move around the windows, instead of using
 " Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
-"" map <c-j> <c-w>j
-"" map <c-k> <c-w>k
-"" map <c-l> <c-w>l
-"" map <c-h> <c-w>h
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
 
 " easier moving between tabs
-"" map <Leader>n <esc>:tabprevious<CR>
-"" map <Leader>m <esc>:tabnext<CR>
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
 
 
 " map sort function to a key
-"" vnoremap <Leader>s :sort<CR>
+vnoremap <Leader>s :sort<CR>
 
 
 " easier moving of code blocks
@@ -100,9 +99,8 @@ highlight ColorColumn ctermbg=233
 
 
 " easier formatting of paragraphs
-"" vmap Q gq
-"" nmap Q gqap
-
+vmap Q gq
+nmap Q gqap
 
 " Useful settings
 set history=700
@@ -138,6 +136,8 @@ set noswapfile
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
 call pathogen#infect()
 
+"" Map F3 to NerdTree
+map <F3> :NERDTreeToggle<CR>
 
 " "
 " ============================================================================
@@ -177,20 +177,20 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 " Better navigating through omnicomplete option list
 " See
 " http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-"" set completeopt=longest,menuone
-"" function! OmniPopup(action)
-"" if pumvisible()
-"" if a:action == 'j'
-"" return "\<C-N>"
-"" elseif a:action == 'k'
-"" return "\<C-P>"
-"" endif
-"" endif
-"" return a:action
-"" endfunction
+set completeopt=longest,menuone
+function! OmniPopup(action)
+   if pumvisible()
+        if a:action == 'j'
+            return "\<C-N>"
+        elseif a:action == 'k'
+            return "\<C-P>"
+        endif
+   endif
+   return a:action
+endfunction
 
-"" inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-"" inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 
 " Python folding
