@@ -17,7 +17,7 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=$HOME/bin:$PATH
 
 ## set perllib
-#export PERL5LIB=$HOME/tools/perl/usr/local/lib/perl5:$HOME/tools/perl/usr/local/lib/perl5/site
+export PERL5LIB=$HOME/tools/perl/lib/perl5:$HOME/tools/perl/lib/perl5/site_perl
 
 # Make vim the default editor
 export EDITOR="vim"
