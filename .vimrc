@@ -1,9 +1,7 @@
-" .vimrc file by Srinivas Nyayapati
-" Based on bits from all over
+" .vimrc file by Srinivas Nyayapati 
+"  Based on bits from all over 
 
-"execute pathogen#infect()
-
-" Automatic reloading of .vimrc
+"  Automatic reloading of .vimrc 
 autocmd! bufwritepost .vimrc source %
 
 " Better copy & paste
@@ -12,6 +10,8 @@ autocmd! bufwritepost .vimrc source %
 set pastetoggle=<F2>
 set clipboard=unnamed
 
+" Shows word with $ at end when you do a cw or C
+set cpoptions+=$
 
 " Mouse and backspace
 set mouse=a " on OSX press ALT and click
@@ -134,10 +134,23 @@ set noswapfile
 " curl -so ~/.vim/autoload/pathogen.vim
 " https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
+let g:pathogen_disabled = []
+call add(g:pathogen_disabled, 'python-mode')
 call pathogen#infect()
 
 "" Map F3 to NerdTree
-map <F3> :NERDTreeToggle<CR>
+" map <F3> :NERDTreeToggle<CR>
+
+" Execute python script
+"au BufRead *.py nmap <F3> :!python %
+" ConqueShell Mappings
+"nmap <F4> :ConqueTermSplit bash
+"nmap <F5> :ConqueTermVSplit bash
+"nmap <F6> :ConqueTermSplit ipython
+"nmap <F7> :ConqueTermVSplit ipython
+"nmap <F8> :execute 'ConqueTermSplit ipython '.expand('%:p')
+"nmap <F9> :execute 'ConqueTermVSplit ipython '.expand('%:p')
+"let g:ConqueTerm_EscKey = ''
 
 " "
 " ============================================================================
@@ -162,25 +175,36 @@ set wildignore+=*/coverage/*
 
 
 " Settings for python-mode
+" I am not using python-mode anymore
+" Using jedi-vim
+" Make sure you disable the plugin
+" Either by moving the plugin folder to pluginname~
+" or use pathogen_disabled as shown above #infect
 " cd ~/.vim/bundle
 " git clone https://github.com/klen/python-mode
-map <Leader>g :call RopeGotoDefinition()<CR>
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope_goto_def_newwin = "vnew"
-let g:pymode_rope_extended_complete = 1
-let g:pymode_breakpoint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_builtin_objs = 0
-let g:pymode_syntax_builtin_funcs = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"map <Leader>g :call RopeGotoDefinition()<CR>
+"let ropevim_enable_shortcuts = 1
+"let g:pymode_rope_goto_def_newwin = "vnew"
+"let g:pymode_rope_extended_complete = 1
+"let g:pymode_breakpoint = 0
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_builtin_objs = 0
+"let g:pymode_syntax_builtin_funcs = 0
+"map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Settings for jedi-vim
 " cd ~/.vim/bundle
 " git clone git://github.com/davidhalter/jedi-vim.git
-"let g:jedi#related_names_command = "<leader>z"
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#popup_select_first = 0
-"map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+" The first thing you need after that is an up-to-date version of Jedi. You can
+" either get it via pip install jedi or with 'git submodule update --init' in
+" your jedi-vim repository.
+" let g:jedi#auto_initialization = 0
+let g:jedi#related_names_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#use_splits_not_buffers = "left"
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Better navigating through omnicomplete option list
 " See
